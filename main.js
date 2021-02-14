@@ -1,6 +1,7 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const userRouter = require("./server/routes/userRouter");
+const todoRouter = require("./server/routes/todoRouter");
 const flash = require("connect-flash");
 const session = require("express-session");
 const morgan = require("morgan");
@@ -39,6 +40,7 @@ app.use((req, res, next) => {
 
 // Routes
 app.use(userRouter);
+app.use(todoRouter);
 
 const PORT = process.env.PORT || 3002;
 
