@@ -1,6 +1,8 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const userRouter = require("./server/routes/userRouter");
+const flash = require("connect-flash");
+const session = require("express-session");
 const morgan = require("morgan");
 const connectDatabase = require("./server/database/connection");
 require("dotenv").config();
@@ -17,6 +19,23 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.set("view engine", "ejs");
+
+// Express session
+app.use(session ({
+  secret: "secret",
+  resave: true,
+  saveUninitialized: true
+}));
+
+// Connect-flash
+app.use(flash());
+// Global variables for use with flash
+app.use((req, res, next) => {
+  res.locals.success_msg = req.flash("success_msg")
+  res.locals.warning_msg = req.flash("warning_msg")
+  // res.locals.error = req.flash("error")
+  next();
+})
 
 // Routes
 app.use(userRouter);
