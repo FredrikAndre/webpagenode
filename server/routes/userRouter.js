@@ -6,6 +6,8 @@ const homeController = require("../controllers/homeController");
 const registerController = require("../controllers/registerController");
 const loginController = require("../controllers/loginController");
 
+const verifyUser = require("../middleware/verifyUser");
+
 // Start page with paths to register / login
 router.get("/welcome", homeController.showWelcome);
 
