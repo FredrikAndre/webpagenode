@@ -27,7 +27,7 @@ exports.reset_post = async (req, res) => {
     try {
       const user = await User.findOne({ email: email });
       if (!user) {
-        return errors.push({ msg: "Email is not registered. Please register an account."}),
+        return errors.push({ msg: "Email is not registered. Please try again or go to register for a new account."}),
         res.render('reset.ejs', {
           errors,
           user
