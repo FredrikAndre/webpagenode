@@ -10,7 +10,7 @@ const resetController = require("../controllers/resetController");
 const verifyUser = require("../middleware/verifyUser");
 
 // Start page with paths to register / login
-router.get("/welcome", homeController.showWelcome);
+router.get('/welcome', homeController.showWelcome);
 
 // Register
 router.get('/user/register', registerController.register_get);
