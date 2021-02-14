@@ -75,3 +75,14 @@ exports.editTodo_get = async (req, res) => {
         res.redirect("/todo/todoHome")
     }
 }
+
+exports.deleteTodo_get = async (req, res) => {
+    try {
+        await Todo.deleteOne({_id: req.params.id})
+        console.log("Deleted todo successfully")
+        res.redirect("/todo/todoHome");
+    } catch (err) {
+        console.log(err);
+        res.redirect("/todo/todoHome");
+    }
+}
