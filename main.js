@@ -19,7 +19,7 @@ app.use(cookieParser());
 app.set("view engine", "ejs");
 
 // Routes
-app.user(userRouter);
+app.use(userRouter);
 
 const PORT = process.env.PORT || 3002;
 
