@@ -30,7 +30,7 @@ exports.register_get = (req, res) => {
         password: hashedPassword,
       });
       newUser.save();
-      res.render('index.ejs', { message: 'You are registered' });
+      res.render('login.ejs');
     }
     } catch (err) {
         console.log(err.message);
