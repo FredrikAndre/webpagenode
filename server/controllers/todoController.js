@@ -76,6 +76,17 @@ exports.editTodo_get = async (req, res) => {
     }
 }
 
+exports.updateTodo_post = async (req, res) => {
+
+    try {
+        await Todo.updateOne({_id: req.params.id}, {todo: req.body.todo}, { runValidators: true })
+        res.redirect("/todo/todoHome")
+    } catch (err) {
+        console.log(err)
+        res.redirect("back")
+    }
+}
+
 exports.deleteTodo_get = async (req, res) => {
     try {
         await Todo.deleteOne({_id: req.params.id})
