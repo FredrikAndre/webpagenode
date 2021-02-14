@@ -12,6 +12,7 @@ router.post('/todo/todoHome', todoController.addNewTodo_post);
 
 // Edit todos and update them
 router.get('/edit/todo/:id', todoController.editTodo_get);
+router.post('/edit/todo/:id', todoController.updateTodo_post);
 
 // Delete todos
 router.get('/delete/todo/:id', todoController.deleteTodo_get);
