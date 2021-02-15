@@ -5,7 +5,7 @@ require('dotenv').config();
 
 // Login
 exports.login_get = (req, res) => {
-    if (req.cookies.jwtToken) return res.redirect('/');
+    if (req.cookies.jwtToken) return res.redirect('/todo');
     try {
       res.render('login.ejs');
     } catch (err) {
