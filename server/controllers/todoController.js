@@ -1,4 +1,5 @@
 const Todo = require('../models/todo');
+const User = require('../models/user');
 
 exports.renderTodoList_get = async (req, res) => {
     
@@ -24,7 +25,8 @@ exports.renderTodoList_get = async (req, res) => {
             totalData,
             totalDataPart,
             todoToShow,
-            todosPerPage
+            todosPerPage,
+            user: req.user.userDB
         });
     } catch (err) {
         console.log(err.messages)
@@ -90,7 +92,8 @@ exports.editTodo_get = async (req, res) => {
             totalData,
             totalDataPart,
             todoToShow,
-            todosPerPage
+            todosPerPage,
+            user: req.user.userDB
         });
     } catch (err) {
         console.log(err.message)
