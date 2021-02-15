@@ -42,6 +42,7 @@
         <% }) %>
     </ul>
 
+    <% if (totalDataPart > 1 ) { %>
     <div class="sorting">
     <% if (totalDataPart !== todoToShow/todosPerPage)  { %>   
         <a href="/todo/?page=<%=(todoToShow/todosPerPage)+1%>&&sorted=<%=sorted%>" class="btn btn-info">Show More</a>    
@@ -51,6 +52,7 @@
         <a href="/todo/?page=<%=(todoToShow/todosPerPage)-1%>&&sorted=<%=sorted%>" class="btn btn-info">Show Less</a>    
         <% } %>
     </div>
+    <% } %>
 
 </div>
 
