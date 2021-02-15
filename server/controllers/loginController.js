@@ -47,7 +47,7 @@ exports.login_get = (req, res) => {
         if (!cookie) {
           res.cookie('jwtToken', jwtToken, { maxAge: 10000000, httpOnly: true });
         }
-        req.flash("success_msg", "Welcome! You are now logged in and use the todo.");
+        req.flash("success_msg", "Welcome! You are now logged in and can use the todo.");
         res.redirect('/todo');
       }
     } catch (err) {

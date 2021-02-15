@@ -10,7 +10,7 @@
       <ul class="navbar-nav">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= user.name %>
+            <span class="username"><%= user.name %></span>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <a class="dropdown-item" href="/logout">Log Out</a>
@@ -28,7 +28,7 @@
 
     <form action="/todo" method="POST" class="d-flex justify-content-center">
         <input type="text" name="todo" class="form-control form-control-lg" id="forminput" placeholder="Enter Todo">
-        <button type="submit" class="btn btn-primary ml-1"><i class="fas fa-plus-square"></i></button>
+        <button type="submit" class="btn btn-info ml-1"><i class="todoicon fas fa-plus-square"></i></button>
         <button class="btn btn-secondary dropdown-toggle ml-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Sort Todos
           </button>
@@ -43,16 +43,16 @@
             <% if (todos.done == true) { %>
                 <li class="list-group-item d-flex">
                 <span class="todotext crossed"><%= todos.todo %><br><span class="datetext">Added: <%= todos.date.toDateString() %> </span></span>
-                <a href="/complete/todo/<%= todos.id %>/?page=<%=(todoToShow/todosPerPage)%>&&sorted=<%=sorted%>" class="btn btn-success ml-auto d-flex align-items-center"><i class="fas fa-check-square"></i></a>
-                <a href="/edit/todo/<%= todos.id %>/?page=<%=(todoToShow/todosPerPage)%>&&sorted=<%=sorted%>" class="btn btn-warning ml-2 d-flex align-items-center"><i class="fas fa-pen-square"></i></a>
-                <a href="/delete/todo/<%= todos._id %>/?page=<%=(todoToShow/todosPerPage)%>&&sorted=<%=sorted%> " class="btn btn-danger ml-2 d-flex align-items-center"><i class="fas fa-minus-square"></i></a>
+                <a href="/complete/todo/<%= todos.id %>/?page=<%=(todoToShow/todosPerPage)%>&&sorted=<%=sorted%>" class="todoicon btn btn-success ml-auto d-flex align-items-center"><i class="fas fa-check-square"></i></a>
+                <a href="/edit/todo/<%= todos.id %>/?page=<%=(todoToShow/todosPerPage)%>&&sorted=<%=sorted%>" class="todoicon btn btn-warning ml-2 d-flex align-items-center"><i class="fas fa-pen-square"></i></a>
+                <a href="/delete/todo/<%= todos._id %>/?page=<%=(todoToShow/todosPerPage)%>&&sorted=<%=sorted%> " class="todoicon btn btn-danger ml-2 d-flex align-items-center"><i class="fas fa-minus-square"></i></a>
                 </li> 
             <% } else { %>
                 <li class="list-group-item d-flex">
                 <span class="todotext"><%= todos.todo %><br><span class="datetext ml-auto">Added: <%= todos.date.toDateString() %> </span></span>
-                <a href="/complete/todo/<%= todos.id %>/?page=<%=(todoToShow/todosPerPage)%>&&sorted=<%=sorted%>" class="btn btn-success ml-auto d-flex align-items-center"><i class="fas fa-check-square"></i></a>
-                <a href="/edit/todo/<%= todos.id %>/?page=<%=(todoToShow/todosPerPage)%>&&sorted=<%=sorted%>" class="btn btn-warning ml-2 d-flex align-items-center"><i class="fas fa-pen-square"></i></a>
-                <a href="/delete/todo/<%= todos._id %>/?page=<%=(todoToShow/todosPerPage)%>&&sorted=<%=sorted%> " class="btn btn-danger ml-2 d-flex align-items-center"><i class="fas fa-minus-square"></i></a>
+                <a href="/complete/todo/<%= todos.id %>/?page=<%=(todoToShow/todosPerPage)%>&&sorted=<%=sorted%>" class="todoicon btn btn-success ml-auto d-flex align-items-center"><i class="fas fa-check-square"></i></a>
+                <a href="/edit/todo/<%= todos.id %>/?page=<%=(todoToShow/todosPerPage)%>&&sorted=<%=sorted%>" class="todoicon btn btn-warning ml-2 d-flex align-items-center"><i class="fas fa-pen-square"></i></a>
+                <a href="/delete/todo/<%= todos._id %>/?page=<%=(todoToShow/todosPerPage)%>&&sorted=<%=sorted%> " class="todoicon btn btn-danger ml-2 d-flex align-items-center"><i class="fas fa-minus-square"></i></a>
                 </li> 
             <% } %>          
         <% }) %>
