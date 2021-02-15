@@ -13,10 +13,12 @@ exports.reset_get = (req, res) => {
   };
   
 const transport = nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp.zoho.eu',
+    port: 465,
+    secure: true,
     auth: {
-      user: 'feddynamiskweb@gmail.com',
-      pass: 'FedDynamiskWeb.2021',
+      user: process.env.USERMAIL,
+      pass: process.env.USERPASSWORD,
     },
   });
   
@@ -40,7 +42,7 @@ exports.reset_post = async (req, res) => {
       await user.save();
 
       await transport.sendMail({
-        from: 'feddynamiskweb@gmail.com',
+        from: process.env.USERMAIL,
         to: user.email,
         subject: 'Reset your password',
         html: `<h4>Please follow this <a href="http://localhost:3000/user/reset/${user.cryptoUrl}">Link</a> to reset password</h4>`,
