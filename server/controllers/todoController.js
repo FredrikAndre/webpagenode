@@ -35,13 +35,15 @@ exports.addNewTodo_post = async (req, res) => {
    
     try {
         const todo = req.body.todo;
+        if (!todo) {
+            req.flash("warning_msg", "You must add a todo!")
+            res.redirect("back")
+        }
         const newTodo = await new Todo({todo}).save()
-        
         if (newTodo) return res.redirect('back'); 
 
     } catch (err) {
-        req.flash("warning_msg", "You must add a todo!")
-        res.redirect("back")
+        
         console.log(err);
     }
 };
@@ -49,7 +51,7 @@ exports.addNewTodo_post = async (req, res) => {
 exports.doneOrNotTodo_get = async (req, res) => {
     
     try {
-        let todoId = req.params.id
+        const todoId = req.params.id
         await Todo.findById(todoId).exec()
         .then((result) => {
             result.done = !result.done;
@@ -106,6 +108,7 @@ exports.updateTodo_post = async (req, res) => {
         res.redirect(`/todo/?page=${pages}&&sorted=${sorted}`)
     } catch (err) {
         console.log(err)
+        req.flash("warning_msg", "You must change the todo first!")
         res.redirect("back")
     }
 }
@@ -113,7 +116,6 @@ exports.updateTodo_post = async (req, res) => {
 exports.deleteTodo_get = async (req, res) => {
     try {
         await Todo.deleteOne({_id: req.params.id})
-        console.log("Deleted todo successfully")
         res.redirect("/todo");
     } catch (err) {
         console.log(err);
