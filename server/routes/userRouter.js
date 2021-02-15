@@ -11,6 +11,7 @@ const verifyUser = require("../middleware/verifyUser");
 
 // Start page with paths to register / login
 router.get('/welcome', homeController.showWelcome);
+router.get('/logout', homeController.logout_get);
 
 // Register
 router.get('/user/register', registerController.register_get);
