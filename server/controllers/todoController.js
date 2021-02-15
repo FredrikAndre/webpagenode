@@ -44,7 +44,7 @@ exports.addNewTodo_post = async (req, res) => {
 
     } catch (err) {
         
-        console.log(err);
+        console.log(err.message);
     }
 };
 
@@ -61,7 +61,7 @@ exports.doneOrNotTodo_get = async (req, res) => {
             res.redirect("back")
         })
     } catch (err) {
-        console.log(err)
+        console.log(err.message)
         res.redirect("/todo");
     }
 }
@@ -93,7 +93,7 @@ exports.editTodo_get = async (req, res) => {
             todosPerPage
         });
     } catch (err) {
-        console.log(err)
+        console.log(err.message)
         res.redirect("/todo")
     }
 }
@@ -107,7 +107,7 @@ exports.updateTodo_post = async (req, res) => {
         await Todo.updateOne({_id: req.params.id}, {todo: req.body.todo}, { runValidators: true })
         res.redirect(`/todo/?page=${pages}&&sorted=${sorted}`)
     } catch (err) {
-        console.log(err)
+        console.log(err.message)
         req.flash("warning_msg", "You must change the todo first!")
         res.redirect("back")
     }
@@ -118,7 +118,7 @@ exports.deleteTodo_get = async (req, res) => {
         await Todo.deleteOne({_id: req.params.id})
         res.redirect("/todo");
     } catch (err) {
-        console.log(err);
+        console.log(err.message);
         res.redirect("/todo");
     }
 }
