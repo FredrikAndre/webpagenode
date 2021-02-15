@@ -5,3 +5,7 @@ exports.showWelcome = (req, res) => {
       console.log(err);
     }
   };
+
+  exports.logout_get = (req, res) => {
+    res.clearCookie('jwtToken').redirect('/welcome');
+  };
