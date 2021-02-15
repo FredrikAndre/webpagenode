@@ -48,7 +48,7 @@ exports.login_get = (req, res) => {
           res.cookie('jwtToken', jwtToken, { maxAge: 10000000, httpOnly: true });
         }
         req.flash("success_msg", "You are now logged in!");
-        res.redirect('/welcome');
+        res.redirect('/');
       }
     } catch (err) {
       console.log(err);
