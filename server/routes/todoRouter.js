@@ -7,8 +7,11 @@ const todoController = require('../controllers/todoController');
 const verifyUser = require("../middleware/verifyUser");
 
 // Render startpage with Todo and add todos
-router.get('/todo/todoHome', todoController.renderTodoList_get);
-router.post('/todo/todoHome', todoController.addNewTodo_post);
+router.get('/', todoController.renderTodoList_get);
+router.post('/', todoController.addNewTodo_post);
+
+// Showing done or not done todos
+router.get('/complete/todo/:id', todoController.doneOrNotTodo_get);
 
 // Edit todos and update them
 router.get('/edit/todo/:id', todoController.editTodo_get);

@@ -27,7 +27,7 @@ exports.renderTodoList_get = async (req, res) => {
             todosPerPage
         });
     } catch (err) {
-        console.log(err)
+        console.log(err.messages)
     }
 };
 
@@ -40,9 +40,29 @@ exports.addNewTodo_post = async (req, res) => {
         if (newTodo) return res.redirect('back'); 
 
     } catch (err) {
+        req.flash("warning_msg", "You must add a todo!")
+        res.redirect("back")
         console.log(err);
     }
 };
+
+exports.doneOrNotTodo_get = async (req, res) => {
+    
+    try {
+        let todoId = req.params.id
+        await Todo.findById(todoId).exec()
+        .then((result) => {
+            result.done = !result.done;
+            return result.save();
+        })
+        .then((result) => {
+            res.redirect("back")
+        })
+    } catch (err) {
+        console.log(err)
+        res.redirect("/");
+    }
+}
 
 exports.editTodo_get = async (req, res) => {
 
@@ -72,7 +92,7 @@ exports.editTodo_get = async (req, res) => {
         });
     } catch (err) {
         console.log(err)
-        res.redirect("/todo/todoHome")
+        res.redirect("/")
     }
 }
 
@@ -80,7 +100,7 @@ exports.updateTodo_post = async (req, res) => {
 
     try {
         await Todo.updateOne({_id: req.params.id}, {todo: req.body.todo}, { runValidators: true })
-        res.redirect("/todo/todoHome")
+        res.redirect("/")
     } catch (err) {
         console.log(err)
         res.redirect("back")
@@ -91,9 +111,9 @@ exports.deleteTodo_get = async (req, res) => {
     try {
         await Todo.deleteOne({_id: req.params.id})
         console.log("Deleted todo successfully")
-        res.redirect("/todo/todoHome");
+        res.redirect("/");
     } catch (err) {
         console.log(err);
-        res.redirect("/todo/todoHome");
+        res.redirect("/");
     }
 }
