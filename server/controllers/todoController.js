@@ -98,9 +98,12 @@ exports.editTodo_get = async (req, res) => {
 
 exports.updateTodo_post = async (req, res) => {
 
+    const sorted = +req.query.sorted || 1;
+    const pages = +req.query.page || 1;
+
     try {
         await Todo.updateOne({_id: req.params.id}, {todo: req.body.todo}, { runValidators: true })
-        res.redirect("/todo")
+        res.redirect(`/todo/?page=${pages}&&sorted=${sorted}`)
     } catch (err) {
         console.log(err)
         res.redirect("back")

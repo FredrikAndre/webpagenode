@@ -26,10 +26,10 @@
         <% todo.forEach(todos =>{ %>
             <% if (todos._id == idTask) { %>
                 <li class="list-group-item d-flex align-items-center"></li>
-                <form action="/edit/todo/<%= todos._id %>" method="post">
+                <form action="/edit/todo/<%= todos._id %>/?page=<%=(todoToShow/todosPerPage)%>&&sorted=<%=sorted%>" method="post">
                 <input type="text" class="m-2" name="todo" id="" placeholder="<%= todos.todo %>">
                 <button type="submit" class="btn btn-success btn-sm ml-auto"><i class="fas fa-exchange-alt"></i></button>
-                <a href="/?page=<%=(todoToShow/todosPerPage)%>&&sorted=<%=sorted%>" class="btn btn-danger btn-sm"><i class="fas fa-undo-alt"></i></a>
+                <a href="/todo/?page=<%=(todoToShow/todosPerPage)%>&&sorted=<%=sorted%>" class="btn btn-danger btn-sm"><i class="fas fa-undo-alt"></i></a>
                 </form>
                 </li>
             <% } else if (todos.done == true) { %>
@@ -50,12 +50,16 @@
         <% }) %>
     </ul>
 
-    <% if (totalDataPart !== todoToShow/todosPerPage)  { %>   
-        <a href="/todo/?page=<%=(todoToShow/todosPerPage)+1%>&&sorted=<%=sorted%>">Visa flera</a>    
-        <% } %>
-
-        <% if (pages > 1) { %>
-        <a href="/todo/?page=<%=(todoToShow/todosPerPage)-1%>&&sorted=<%=sorted%>">Visa mindre</a>    
+    <% if (totalDataPart > 1 ) { %>
+        <div class="sorting">
+        <% if (totalDataPart !== todoToShow/todosPerPage)  { %>   
+            <a href="/todo/?page=<%=(todoToShow/todosPerPage)+1%>&&sorted=<%=sorted%>" class="btn btn-info">Show More</a>    
+            <% } %>
+    
+            <% if (pages > 1) { %>
+            <a href="/todo/?page=<%=(todoToShow/todosPerPage)-1%>&&sorted=<%=sorted%>" class="btn btn-info">Show Less</a>    
+            <% } %>
+        </div>
         <% } %>
 
 </div>
