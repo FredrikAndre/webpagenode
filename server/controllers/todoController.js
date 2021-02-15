@@ -60,7 +60,7 @@ exports.doneOrNotTodo_get = async (req, res) => {
         })
     } catch (err) {
         console.log(err)
-        res.redirect("/");
+        res.redirect("/todo");
     }
 }
 
@@ -92,7 +92,7 @@ exports.editTodo_get = async (req, res) => {
         });
     } catch (err) {
         console.log(err)
-        res.redirect("/")
+        res.redirect("/todo")
     }
 }
 
@@ -100,7 +100,7 @@ exports.updateTodo_post = async (req, res) => {
 
     try {
         await Todo.updateOne({_id: req.params.id}, {todo: req.body.todo}, { runValidators: true })
-        res.redirect("/")
+        res.redirect("/todo")
     } catch (err) {
         console.log(err)
         res.redirect("back")
@@ -111,9 +111,9 @@ exports.deleteTodo_get = async (req, res) => {
     try {
         await Todo.deleteOne({_id: req.params.id})
         console.log("Deleted todo successfully")
-        res.redirect("/");
+        res.redirect("/todo");
     } catch (err) {
         console.log(err);
-        res.redirect("/");
+        res.redirect("/todo");
     }
 }

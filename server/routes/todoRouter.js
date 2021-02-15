@@ -7,8 +7,8 @@ const todoController = require('../controllers/todoController');
 const verifyUser = require("../middleware/verifyUser");
 
 // Render startpage with Todo and add todos
-router.get('/', verifyUser, todoController.renderTodoList_get);
-router.post('/', verifyUser, todoController.addNewTodo_post);
+router.get('/todo', verifyUser, todoController.renderTodoList_get);
+router.post('/todo', verifyUser, todoController.addNewTodo_post);
 
 // Showing done or not done todos
 router.get('/complete/todo/:id', verifyUser, todoController.doneOrNotTodo_get);
