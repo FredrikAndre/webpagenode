@@ -8,7 +8,7 @@ exports.renderTodoList_get = async (req, res) => {
         const pages = +req.query.page || 1;
 
         const totalData = await Todo.find().countDocuments();
-
+       
         const todosPerPage = 3;
         
         const totalDataPart = Math.ceil(totalData/todosPerPage);
@@ -41,6 +41,7 @@ exports.addNewTodo_post = async (req, res) => {
             req.flash("warning_msg", "You must add a todo!")
             res.redirect("back")
         }
+
         const newTodo = await new Todo({todo}).save()
         if (newTodo) return res.redirect('back'); 
 
