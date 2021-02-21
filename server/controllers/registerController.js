@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 // Register
 exports.register_get = (req, res) => {
     try {
-      res.render('register.ejs');
+      res.render('users/register.ejs');
     } catch (err) {
       console.log(err);
     }
@@ -17,7 +17,7 @@ exports.register_get = (req, res) => {
     try {
     if (!name || !email || !password || !password2 ) {
         return errors.push({msg: "All fields need to be filled in."}),
-        res.render('register.ejs', { 
+        res.render('users/register.ejs', { 
             errors,
             name,
             email,
@@ -27,7 +27,7 @@ exports.register_get = (req, res) => {
     }
     if (password !== password2) {
         return errors.push({ msg: "The passwords does not match." }),
-        res.render('register.ejs', {
+        res.render('users/register.ejs', {
             errors,
             password,
             password2
@@ -35,7 +35,7 @@ exports.register_get = (req, res) => {
     }
     if (password.length < 6) {
         return errors.push({ msg: "Password must be atleast 6 characters long." }),
-        res.render('register.ejs', {
+        res.render('users/register.ejs', {
             errors,
             password,
             password2
@@ -45,14 +45,14 @@ exports.register_get = (req, res) => {
     const userName = await User.findOne({ name: name });
     if (userName) {
         return errors.push({ msg: "This username already exists, please try another." }),
-        res.render('register.ejs', {
+        res.render('users/register.ejs', {
             errors,
             userName,
         }) 
     } 
     if (userMail) {
         return errors.push({ msg: "This email is taken, please try another." }),
-        res.render('register.ejs', {
+        res.render('users/register.ejs', {
               errors,
               userMail,
         }) 

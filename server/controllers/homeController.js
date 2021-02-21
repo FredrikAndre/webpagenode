@@ -1,6 +1,6 @@
 exports.showWelcome = (req, res) => {
     try {
-      res.render('welcome.ejs', { message: '' });
+      res.render('users/welcome.ejs');
     } catch (err) {
       console.log(err);
     }

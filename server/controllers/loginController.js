@@ -7,7 +7,7 @@ require('dotenv').config();
 exports.login_get = (req, res) => {
     if (req.cookies.jwtToken) return res.redirect('/todo');
     try {
-      res.render('login.ejs');
+      res.render('users/login.ejs');
     } catch (err) {
       console.log(err);
     }
@@ -19,7 +19,7 @@ exports.login_get = (req, res) => {
     try {
       if (!email || !password) {
           return errors.push({ msg: "All fields need to be filled in." }),
-          res.render('login.ejs', {
+          res.render('users/login.ejs', {
               errors,
               email, 
               password 
@@ -28,7 +28,7 @@ exports.login_get = (req, res) => {
       const userDB = await User.findOne({ email: email });
       if (!userDB) {
         return errors.push({ msg: "This email is not registered. You need to register an account before being able to log in."}),
-        res.render('login.ejs', {
+        res.render('users/login.ejs', {
           errors,
           userDB
         });
@@ -36,7 +36,7 @@ exports.login_get = (req, res) => {
       const validUser = await bcrypt.compare(password, userDB.password);
       if (!validUser) {
         return errors.push({ msg: "Password is incorrect." }),
-        res.render('login.ejs', {
+        res.render('users/login.ejs', {
           errors,
           validUser
         });
