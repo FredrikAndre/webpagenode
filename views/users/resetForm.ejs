@@ -1,10 +1,10 @@
-<%- include("./partials/header") %>
+<%- include("../partials/header") %>
 
 <div class="row mt-5">
     <div class="col-md-6 m-auto">
       <div class="card card-body">
         <h1 class="text-center mb-3"><i class="fas fa-lock"></i>  Reset password</h1>
-        <%- include("./helpers/messages") %>
+        <%- include("../helpers/messages") %>
         <form action="/user/resetPasswordForm" method="POST">
           <div class="form-group">
             <label for="password">Password</label>
@@ -42,4 +42,4 @@
     </div>
   </div>
 
-<%- include("./partials/footer") %>
+<%- include("../partials/footer") %>

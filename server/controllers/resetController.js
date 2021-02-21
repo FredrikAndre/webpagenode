@@ -6,7 +6,7 @@ require('dotenv').config();
 
 exports.reset_get = (req, res) => {
     try {
-      res.render('reset.ejs');
+      res.render('users/reset.ejs');
     } catch (err) {
       console.log(err);
     }
@@ -30,7 +30,7 @@ exports.reset_post = async (req, res) => {
       const user = await User.findOne({ email: email });
       if (!user) {
         return errors.push({ msg: "Email is not registered. Please try again or go to register for a new account."}),
-        res.render('reset.ejs', {
+        res.render('users/reset.ejs', {
           errors,
           user
         });
@@ -54,7 +54,7 @@ exports.reset_post = async (req, res) => {
     } catch (err) {
         if (err) {
         return errors.push({ msg: "An error has occured. Please try sending the email again."}),
-        res.render('reset.ejs', {
+        res.render('users/reset.ejs', {
             errors,
             err
         });
@@ -76,7 +76,7 @@ exports.reset_post = async (req, res) => {
         res.redirect('/user/register');   
     } 
         
-        res.render('resetForm.ejs', { email: user.email });
+        res.render('users/resetForm.ejs', { email: user.email });
     
     } catch (err) {
       console.log(err.message);
