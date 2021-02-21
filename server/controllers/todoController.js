@@ -84,7 +84,7 @@ exports.editTodo_get = async (req, res) => {
         const todoToShow = todosPerPage * pages;
 
         const todo = await Todo.find({}).limit(todoToShow).sort({date: sorted})
-        res.render("editTodo.ejs", 
+        res.render("test/editTodo.ejs", 
         {
             todo:todo, 
             idTask: req.params.id,
