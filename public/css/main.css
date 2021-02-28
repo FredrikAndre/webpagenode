@@ -1,0 +1,49 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Global Rules*/
+body {
+    background-image: linear-gradient(to left, #78c2ad, #f3909a);
+}
+
+.navbar {
+    background-image: linear-gradient(to left, #78c2ad, #f3909a);
+}
+.navbar-brand {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.navbar-brand .fas {
+    font-size: 2rem;
+}
+
+.username {
+    color: #2F4F4F;
+}
+
+.footertext {
+    color: #2F4F4F;
+    margin: 3rem 0;
+}
+
+/* List Rules*/
+.todotext {
+    font-weight: 600;
+}
+
+.datetext {
+    font-weight: 400;
+    font-size: 0.8rem;
+}
+.crossed {
+    text-decoration: line-through;
+    opacity: 0.8;
+}
+
+.todoicon {
+    font-size: 1.2rem;
+}
