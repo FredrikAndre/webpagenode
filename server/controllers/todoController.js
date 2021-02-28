@@ -30,6 +30,7 @@ exports.renderTodoList_get = async (req, res) => {
         });
     } catch (err) {
         console.log(err.messages)
+        res.status(500).send('Could not find internal server');
     }
 };
 
@@ -41,12 +42,14 @@ exports.addNewTodo_post = async (req, res) => {
             req.flash("warning_msg", "You must add a todo!")
             res.redirect("back")
         }
-
+        if (todo.length < 2 || todo.length > 30) {
+            req.flash("warning_msg", "Todo can not be less than 2 characters and no longer than 30 characters!")
+            res.redirect("back")
+        }
         const newTodo = await new Todo({todo}).save()
         if (newTodo) return res.redirect('back'); 
 
-    } catch (err) {
-        
+    } catch (err) {  
         console.log(err.message);
     }
 };
@@ -106,14 +109,14 @@ exports.updateTodo_post = async (req, res) => {
 
     const sorted = +req.query.sorted || 1;
     const pages = +req.query.page || 1;
-
+    
     try {
         await Todo.updateOne({_id: req.params.id}, {todo: req.body.todo}, { runValidators: true })
         res.redirect(`/todo/?page=${pages}&&sorted=${sorted}`)
     } catch (err) {
-        console.log(err.message)
-        req.flash("warning_msg", "You must change the todo first!")
+        req.flash("warning_msg", "Todo can not be less than 2 characters and no longer than 30 characters!")
         res.redirect("back")
+        console.log(err.message)  
     }
 }
 
