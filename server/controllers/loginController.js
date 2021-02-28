@@ -52,5 +52,6 @@ exports.login_get = (req, res) => {
       }
     } catch (err) {
       console.log(err);
+      res.status(500).send('Something went wrong, please reload page and try again.');
     }
   };

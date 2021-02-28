@@ -45,7 +45,8 @@ exports.reset_post = async (req, res) => {
         from: process.env.USERMAIL,
         to: user.email,
         subject: 'Reset your password',
-        html: `<h4>Please follow this <a href="http://localhost:3000/user/reset/${user.cryptoUrl}">Link</a> to reset password</h4>`,
+        html: `<h1 style="font-family: 'Montserrat', sans-serif; text-align:center;">Hi <span style="color:#78c2ad;">${user.name}</span>.</h1><h4 style="font-family: 'Montserrat', sans-serif; font-weight:light; color:#2F4F4F; text-align:center;">
+        It is not always easy to remember things.<br> Please follow this <a style="text-decoration:none; color:#f3909a;" href="http://localhost:3000/user/reset/${user.cryptoUrl}">Link</a> to reset your password</h4>`,
       });
       
       req.flash("success_msg", "An email has been sent to your adress, please check your inbox.")
@@ -106,5 +107,6 @@ exports.reset_post = async (req, res) => {
       res.redirect('/user/login');
     } catch (err) {
       console.log(err);
+      res.status(500).send('Something went wrong, please reload page and try again.');
     }
   };
