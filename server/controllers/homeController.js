@@ -10,4 +10,4 @@ exports.showWelcome = (req, res) => {
     res.clearCookie('jwtToken')
     req.flash("warning_msg", "You are now logged out!")
     res.redirect('/');
-  };
+  }; // testing
